@@ -1,4 +1,4 @@
-import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
+import { /* ApolloDriverConfig, */ ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
@@ -11,6 +11,8 @@ import { AuthModule } from './auth/auth.module';
 import { JwtService } from '@nestjs/jwt';
 import { SeedModule } from './seed/seed.module';
 import { CommonModule } from './common/common.module';
+import { ListsModule } from './lists/lists.module';
+import { ListItemModule } from './list-item/list-item.module';
 
 @Module({
   imports: [
@@ -20,12 +22,12 @@ import { CommonModule } from './common/common.module';
       driver: ApolloDriver,
       imports: [AuthModule],
       inject: [JwtService],
-      useFactory: async (jwtService: JwtService) => {
+      useFactory: async (/* jwtService: JwtService */) => {
         return {
           playground: false,
           autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
           plugins: [ApolloServerPluginLandingPageLocalDefault()],
-          context({ req }) {
+          context(/* { req } */) {
             // const token = req.headers.authorization?.replace('Bearer ', '');
             // if (!token) throw Error('Token needed');
             // const payload = jwtService.decode(token);
@@ -58,6 +60,8 @@ import { CommonModule } from './common/common.module';
     AuthModule,
     SeedModule,
     CommonModule,
+    ListsModule,
+    ListItemModule,
   ],
   controllers: [],
   providers: [],
