@@ -20,6 +20,11 @@ yarn start:dev
 ```
 6. Go to the site:
 ```
-localhost:3000/graphql
+localhost:4000/graphql
 ```
 7. Execute the __"mutation"__ executeSeed, to fill the database with the information
+
+
+### Dockerhub - Instructions
+
+Actual private repository __leinadpy/nest-graphql-prod:1.0.1__
